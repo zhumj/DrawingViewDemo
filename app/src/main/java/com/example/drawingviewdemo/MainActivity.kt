@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setDrawingVisible(true)
+
         val displayMetrics = DisplayMetrics()
         val windowManager = windowManager
         windowManager.defaultDisplay.getMetrics(displayMetrics)
@@ -34,5 +37,28 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity.drawingView.strokeWidth = thickness
             }
         })
+    }
+
+    fun onClearClick(view: View) {
+        drawingView.clear()
+    }
+
+    fun onSaveClick(view: View) {
+        if (drawingView.mBitmap == null) {
+            ToastHelper.showToast(this@MainActivity, "Bitmap 为 null")
+            return
+        }
+        setDrawingVisible(false)
+        ivDrawImage.setImageBitmap(drawingView.mBitmap)
+    }
+
+    fun onBackClick(view: View) {
+        setDrawingVisible(true)
+    }
+
+    private fun setDrawingVisible(drawingVisible: Boolean) {
+        drawingView.visibility = if (drawingVisible) View.VISIBLE else View.GONE
+        llBottom.visibility = drawingView.visibility
+        llShowDrawImage.visibility = if (drawingVisible) View.GONE else View.VISIBLE
     }
 }

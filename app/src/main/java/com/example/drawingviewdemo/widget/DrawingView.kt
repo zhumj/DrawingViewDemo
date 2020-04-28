@@ -33,7 +33,7 @@ class DrawingView: View {
     var strokeWidth: Int = BRUSH_SIZE_ARRAY[0] // 画笔宽度
     var currentColor: Int = DEFAULT_COLOR // 画笔颜色
 
-    private var mBitmap: Bitmap? = null
+    var mBitmap: Bitmap? = null
     private var mBitmapPaint: Paint = Paint(4)
     private var mCanvas: Canvas? = null
 
